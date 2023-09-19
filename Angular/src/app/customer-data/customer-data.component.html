@@ -1,0 +1,35 @@
+﻿
+
+
+
+
+<form [formGroup]="customerForm" (ngSubmit)="saveCustomerData()">
+  <div>
+    <label for="cardNumber">Credit/Debit Card Number</label>
+    <input type="text" id="cardNumber" formControlName="cardNumber">
+    <div *ngIf="customerForm.get('cardNumber').invalid && (customerForm.get('cardNumber').dirty || customerForm.get('cardNumber').touched)">
+      <div *ngIf="customerForm.get('cardNumber').errors.required">Card number is required</div>
+      <div *ngIf="customerForm.get('cardNumber').errors.pattern">Invalid card number</div>
+    </div>
+  </div>
+
+  <div>
+    <label for="cvvCode">CVV Code</label>
+    <input type="text" id="cvvCode" formControlName="cvvCode">
+    <div *ngIf="customerForm.get('cvvCode').invalid && (customerForm.get('cvvCode').dirty || customerForm.get('cvvCode').touched)">
+      <div *ngIf="customerForm.get('cvvCode').errors.required">CVV code is required</div>
+      <div *ngIf="customerForm.get('cvvCode').errors.pattern">Invalid CVV code</div>
+    </div>
+  </div>
+
+  <div>
+    <label for="ePayment">E-Payment</label>
+    <input type="text" id="ePayment" formControlName="ePayment">
+    <div *ngIf="customerForm.get('ePayment').invalid && (customerForm.get('ePayment').dirty || customerForm.get('ePayment').touched)">
+      <div *ngIf="customerForm.get('ePayment').errors.required">E-payment is required</div>
+      <div *ngIf="customerForm.get('ePayment').errors.pattern">Invalid e-payment</div>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="customerForm.invalid">Save</button>
+</form>
