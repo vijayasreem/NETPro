@@ -1,0 +1,25 @@
+﻿
+
+
+<form [formGroup]="bookingForm" (ngSubmit)="cancelBooking()">
+  <div>
+    <label for="checkInDate">Check-in Date:</label>
+    <input type="date" id="checkInDate" formControlName="checkInDate" required>
+    <div *ngIf="checkInDate.touched && checkInDate.invalid" class="error-message">
+      <div *ngIf="checkInDate.errors.required">Check-in Date is required</div>
+      <div *ngIf="checkInDate.errors.pastDate">Check-in Date must be in the future</div>
+    </div>
+  </div>
+
+  <div>
+    <label for="cancelDate">Cancellation Date:</label>
+    <input type="date" id="cancelDate" formControlName="cancelDate" required>
+    <div *ngIf="cancelDate.touched && cancelDate.invalid" class="error-message">
+      <div *ngIf="cancelDate.errors.required">Cancellation Date is required</div>
+      <div *ngIf="cancelDate.errors.pastDate">Cancellation Date must be in the future</div>
+      <div *ngIf="cancelDate.errors.minimumDuration">Cancellation Date must be at least 24 hours before Check-in Date</div>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="bookingForm.invalid">Cancel Booking</button>
+</form>
